@@ -1,0 +1,65 @@
+#include "stdafx.h"
+#include "stdio.h"
+#include "math.h"
+void main()
+{
+    int N,a[100],i,c;
+    double ave=0,G,amin,amax;
+    printf("**************************欢迎来到黄金点游戏直播现场**************************\n");
+    printf("规则是这样的，\nN位客官，\n每位请写出0-100间的有理数，\n提交的数字最靠近G点(黄金点)的人得N分\n\n\n\n");
+    do
+    {
+    printf("**************************      请输入游戏人数:     **************************\n");
+    scanf("%d",&N);
+    for(i=0;i<N;i++)
+    {
+        printf("第%d位客官请输入心中所想的数字:\n",i+1);
+        scanf("%d",&a[i]);
+        ave=ave+a[i];
+    }
+    ave=ave/N;
+    G=0.618*ave;
+    printf("该组数据的平均值%lf:\n",ave);
+    printf("该组数据的黄金点为%lf:\n",G);
+    amin=fabs(a[0]-G),amax=fabs(a[0]-G);
+    for(i=1;i<N;i++)//找到amin
+    {
+        if(fabs(a[i]-G)<amin)
+            amin=fabs(a[i]-G);
+        else
+            continue;
+    }
+    for(i=0;i<N;i++)//打分
+    {
+        if(amin==fabs(a[i]-G))
+        {
+            i++;
+            printf("第%d位客官得分为%d.\n",i,N);
+        }
+        else
+            continue;
+    }
+    for(i=1;i<N;i++)//找到amax
+    {
+        if(fabs(a[i]-G)>amax)
+            amax=fabs(a[i]-G);
+        else
+            continue;
+    }
+    for(i=0;i<N;i++)//打分
+    {
+        if(amax==fabs(a[i]-G))
+        {
+            i++;
+            printf("第%d位客官得分为-2.\n",i);
+        }
+        else
+            continue;
+    }
+    printf("其余客官得分为0分。\n");
+    printf("^_^ ^_^ ^_^ ^_^ ^_^ ^_^ ^_^ 诸位客官要不要继续玩？^_^ ^_^ ^_^ ^_^ ^_^ ^_^ ^_^ \n");
+    printf("继续玩的客官们请扣1，\n不继续玩的随便输入个即可。\n");
+    scanf("%d",&c);
+    }while(c==1); 
+    printf("=o= =o= =o= =o= =o= =o= =o=欢迎再来玩噢！我们后会无期=o= =o= =o= =o= =o= =o= =o= \n\n\n\n\n\n\n");
+    printf("……………………………………你带走我的思念，却没说抱歉…………………………………\n");
